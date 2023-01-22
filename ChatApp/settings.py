@@ -137,3 +137,5 @@ CHANNEL_LAYERS = {
 		"BACKEND": "channels.layers.InMemoryChannelLayer"
 	}
 }
+
+CSRF_COOKIE_HTTPONLY = False
