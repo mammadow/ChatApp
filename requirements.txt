@@ -7,7 +7,7 @@ bashlex==0.18
 bracex==2.3.post1
 certifi==2022.12.7
 cffi==1.15.1
-channels==4.0.0
+channels==3.0.5
 cibuildwheel==2.12.0
 constantly==15.1.0
 cryptography==39.0.0
