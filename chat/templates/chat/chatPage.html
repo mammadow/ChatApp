@@ -1,49 +1,67 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Chat Room | ChatApp</title>
+	<link rel="stylesheet" href="{% static 'chat/chat.css' %}">
+</head>
 <body>
-	<center><h1>Hello , Welcome to my chat site ! {{request.user}}</h1></center>
-	<br>
-	{% if request.user.is_authenticated %}
-	<center> Logout the chat Page <a href = "{% url 'logout-user' %}">Logout</a></center>
-	{% endif %}
-	<div
-	class="chat__item__container"
-	id="id_chat_item_container"
-	style="font-size: 20px"
-	>
-	<br />
-	<input type="text" id="id_message_send_input" />
-	<button type="submit" id="id_message_send_button">Send Message</button>
-	<br />
-	<br />
-	</div>
-	<script>
-	const chatSocket = new WebSocket("ws://" + window.location.host + "/");
-	chatSocket.onopen = function (e) {
-		console.log("The connection was setup successfully !");
-	};
-	chatSocket.onclose = function (e) {
-		console.log("Something unexpected happened !");
-	};
-	document.querySelector("#id_message_send_input").focus();
-	document.querySelector("#id_message_send_input").onkeyup = function (e) {
-		if (e.keyCode == 13) {
-		document.querySelector("#id_message_send_button").click();
-		}
-	};
-	document.querySelector("#id_message_send_button").onclick = function (e) {
-		var messageInput = document.querySelector(
-		"#id_message_send_input"
-		).value;
-		chatSocket.send(JSON.stringify({ message: messageInput, username : "{{request.user.username}}"}));
-	};
-	chatSocket.onmessage = function (e) {
-		const data = JSON.parse(e.data);
-		var div = document.createElement("div");
-		div.innerHTML = data.username + " : " + data.message;
-		document.querySelector("#id_message_send_input").value = "";
-		document.querySelector("#id_chat_item_container").appendChild(div);
-	};
-	</script>
+	<main class="shell" data-chat-root data-username="{{ request.user.username }}">
+		<section class="panel chat-layout">
+			<header class="chat-header">
+				<div>
+					<p class="eyebrow">Shared Room</p>
+					<h1 class="title">Hello, {{ request.user.username }}.</h1>
+					<p class="subtitle">
+						This room keeps the latest messages and updates everyone live over WebSockets.
+					</p>
+				</div>
+				<div class="chat-meta">
+					<span class="status-pill" data-connection-status>Connecting...</span>
+					<a class="logout-link" href="{% url 'logout-user' %}">Logout</a>
+				</div>
+			</header>
+
+			<section class="chat-log" data-message-log>
+				<p class="empty-state" data-empty-state {% if messages %}hidden{% endif %}>
+					No messages yet. Start the room with a short intro.
+				</p>
+				{% for message in messages %}
+				<article class="message{% if message.user_id == request.user.id %} message--self{% endif %}">
+					<div class="message__meta">
+						<span class="message__author">{{ message.user.username }}</span>
+						<time>{{ message.created_at|date:"H:i" }}</time>
+					</div>
+					<p class="message__body">{{ message.content }}</p>
+				</article>
+				{% endfor %}
+			</section>
+
+			<form class="composer" data-composer-form>
+				<textarea
+					name="message"
+					placeholder="Write a message and press Enter"
+					maxlength="500"
+					required
+					data-message-input
+				></textarea>
+				<button type="submit" data-send-button disabled>Send</button>
+			</form>
+
+			<div class="helper-row">
+				<div class="helper-group">
+					<span>Shift+Enter adds a new line.</span>
+					<span data-composer-state>Waiting for connection...</span>
+				</div>
+				<div class="helper-group helper-group--right">
+					<span data-character-count>0/500</span>
+					<span data-message-count></span>
+				</div>
+			</div>
+		</section>
+	</main>
+	<script src="{% static 'chat/chat.js' %}"></script>
 </body>
 </html>

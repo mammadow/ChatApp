@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Create Account | ChatApp</title>
+    <link rel="stylesheet" href="{% static 'chat/chat.css' %}">
+</head>
+<body>
+    <main class="auth-card panel">
+        <p class="eyebrow">Realtime Django Chat</p>
+        <h1 class="title">Create your account.</h1>
+        <p class="subtitle">
+            Pick a username and password, then you will be signed in and taken straight to the chat room.
+        </p>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.as_p }}
+            <button type="submit" class="button">Register</button>
+        </form>
+        <p class="auth-links">
+            Already registered?
+            <a class="auth-link" href="{% url 'login-user' %}">Sign in</a>
+        </p>
+    </main>
+</body>
+</html>

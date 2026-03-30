@@ -1,1 +1,1 @@
-web: gunicorn ChatApp.wsgi --log-file -
+web: daphne -b 0.0.0.0 -p $PORT ChatApp.asgi:application

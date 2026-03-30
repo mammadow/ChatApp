@@ -1,11 +1,29 @@
+{% load static %}
 <!DOCTYPE html>
-<html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Sign In | ChatApp</title>
+    <link rel="stylesheet" href="{% static 'chat/chat.css' %}">
+</head>
 <body>
-    <form method ="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <br>
-        <button type = "submit">Login</button>
-    </form>
+    <main class="auth-card panel">
+        <p class="eyebrow">Realtime Django Chat</p>
+        <h1 class="title">Welcome back.</h1>
+        <p class="subtitle">
+            Sign in to join the shared room, see recent messages, and chat in real time.
+        </p>
+        <form method="post" class="auth-form">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.as_p }}
+            <button type="submit" class="button">Login</button>
+        </form>
+        <p class="auth-links">
+            Need an account?
+            <a class="auth-link" href="{% url 'register-user' %}">Create one</a>
+        </p>
+    </main>
 </body>
 </html>
