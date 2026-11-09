@@ -64,7 +64,7 @@ python manage.py test chat
 - `Procfile` and `railway.json` now start Daphne instead of Gunicorn.
 - `requirements.txt` is reduced to the primary runtime dependencies.
 
-## Project Structure
+## Architecture & Project Structure
 
 - `ChatApp/` contains project settings and ASGI/WSGI entrypoints.
 - `chat/` contains the chat app, templates, static assets, consumer, and tests.
