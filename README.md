@@ -71,7 +71,7 @@ python manage.py test chat
 - `db.sqlite3` is the local development database.
 
 ## Contributing
-Pull requests and issue reports are welcome.
+Pull requests, bug reports, and feature suggestions are welcome.
 
 ## License
 
