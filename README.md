@@ -26,7 +26,7 @@ ChatApp is a small Django + Channels project for a shared realtime chat room. Th
 
 ```powershell
 python -m venv .venv
-.\.venv\Scripts\activate
+.\.venv\Scripts\activate   # Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements.txt
 ```
 
