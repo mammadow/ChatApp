@@ -72,4 +72,4 @@ python manage.py test chat
 
 ## License
 
-This project is available under the MIT License. See [LICENSE](LICENSE).
+This project is available under the MIT License. See the [LICENSE](LICENSE) file for details.
