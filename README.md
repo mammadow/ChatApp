@@ -60,7 +60,7 @@ python manage.py test
 
 ## Deployment Notes
 
-- The app entrypoint is ASGI, not WSGI, because chat uses WebSockets.
+- The app entrypoint is ASGI (ChatApp/asgi.py), not WSGI, because chat uses WebSockets.
 - `Procfile` and `railway.json` now start Daphne instead of Gunicorn.
 - `requirements.txt` is reduced to the primary runtime dependencies.
 
