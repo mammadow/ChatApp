@@ -55,7 +55,7 @@ python manage.py runserver
 Run the test suite with:
 
 ```powershell
-python manage.py test
+python manage.py test chat
 ```
 
 ## Deployment Notes
