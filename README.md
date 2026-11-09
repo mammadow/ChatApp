@@ -6,7 +6,7 @@ ChatApp is a small Django + Channels project for a shared realtime chat room. Th
 
 - Django authentication for login/logout
 - Shared room chat over Django Channels
-- Recent message persistence in SQLite
+- Recent message persistence in SQLite (db.sqlite3)
 - Responsive chat interface with connection status
 - Basic automated tests for page access and socket behavior
 - ASGI deployment via Daphne for WebSocket support
