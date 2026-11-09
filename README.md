@@ -70,6 +70,9 @@ python manage.py test chat
 - `chat/` contains the chat app, templates, static assets, consumer, and tests.
 - `db.sqlite3` is the local development database.
 
+## Contributing
+Pull requests and issue reports are welcome.
+
 ## License
 
 This project is available under the MIT License. See the [LICENSE](LICENSE) file for details.
